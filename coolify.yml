@@ -1,0 +1,48 @@
+# Configuración específica para Coolify
+name: realm-quest-rpg
+type: docker-compose
+
+# Configuración del proyecto
+project:
+  name: "Realm Quest RPG"
+  description: "Juego de rol web completo y adictivo"
+  repository: "https://github.com/tu-usuario/realm-quest"
+  
+# Configuración de deployment
+deployment:
+  build_command: "docker-compose build"
+  start_command: "docker-compose up -d"
+  
+# Variables de entorno (opcional)
+environment:
+  NGINX_WORKER_PROCESSES: "auto"
+  NGINX_WORKER_CONNECTIONS: "1024"
+  
+# Configuración de red
+network:
+  external: true
+  name: "coolify"
+  
+# Health checks
+healthcheck:
+  enabled: true
+  endpoint: "/health"
+  interval: 30
+  timeout: 10
+  retries: 3
+
+# Configuración de recursos
+resources:
+  memory: "256Mi"
+  cpu: "0.2"
+
+# Configuración de proxy/dominio
+proxy:
+  enabled: true
+  # domain: "tu-dominio.com"  # Descomenta y configura tu dominio
+  
+# Configuración de logs
+logs:
+  enabled: true
+  max_size: "10m"
+  max_files: "3"

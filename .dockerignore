@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Netlify específico (no necesario para Coolify)
+netlify.toml
+_redirects
+
+# Node modules (aunque no tenemos en este proyecto)
+node_modules
+npm-debug.log
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode
+.idea
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment files
+.env*
+
+# Build artifacts
+dist
+build
+
+# Documentation específica de desarrollo
+README-dev.md

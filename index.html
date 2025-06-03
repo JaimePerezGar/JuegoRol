@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realm Quest - RPG Web</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Pantalla de Carga -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <h1 class="game-title">REALM QUEST</h1>
+                <div class="loading-bar">
+                    <div class="loading-fill"></div>
+                </div>
+                <p class="loading-text">Preparando tu aventura...</p>
+            </div>
+        </div>
+
+        <!-- Pantalla Principal -->
+        <div id="main-screen" class="screen">
+            <!-- Header con información del jugador -->
+            <header class="game-header">
+                <div class="player-info">
+                    <div class="player-avatar">
+                        <div class="avatar-ring"></div>
+                        <span class="level-badge" id="player-level">1</span>
+                    </div>
+                    <div class="player-stats">
+                        <h3 id="player-name">Aventurero</h3>
+                        <div class="stat-bar">
+                            <div class="stat-label">HP</div>
+                            <div class="health-bar">
+                                <div class="bar-fill" id="health-fill"></div>
+                                <span class="bar-text" id="health-text">100/100</span>
+                            </div>
+                        </div>
+                        <div class="stat-bar">
+                            <div class="stat-label">MP</div>
+                            <div class="mana-bar">
+                                <div class="bar-fill" id="mana-fill"></div>
+                                <span class="bar-text" id="mana-text">50/50</span>
+                            </div>
+                        </div>
+                        <div class="stat-bar">
+                            <div class="stat-label">XP</div>
+                            <div class="exp-bar">
+                                <div class="bar-fill" id="exp-fill"></div>
+                                <span class="bar-text" id="exp-text">0/100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="currency-info">
+                    <div class="currency">
+                        <span class="currency-icon">💰</span>
+                        <span id="gold-amount">0</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido Principal -->
+            <main class="game-main">
+                <!-- Panel Izquierdo - Navegación -->
+                <nav class="main-nav">
+                    <button class="nav-btn active" data-tab="dashboard">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Dashboard</span>
+                    </button>
+                    <button class="nav-btn" data-tab="explore">
+                        <span class="nav-icon">🗺️</span>
+                        <span class="nav-text">Explorar</span>
+                    </button>
+                    <button class="nav-btn" data-tab="inventory">
+                        <span class="nav-icon">🎒</span>
+                        <span class="nav-text">Inventario</span>
+                    </button>
+                    <button class="nav-btn" data-tab="character">
+                        <span class="nav-icon">⚔️</span>
+                        <span class="nav-text">Personaje</span>
+                    </button>
+                    <button class="nav-btn" data-tab="quests">
+                        <span class="nav-icon">📜</span>
+                        <span class="nav-text">Misiones</span>
+                    </button>
+                    <button class="nav-btn" data-tab="achievements">
+                        <span class="nav-icon">🏆</span>
+                        <span class="nav-text">Logros</span>
+                    </button>
+                </nav>
+
+                <!-- Área de Contenido -->
+                <section class="content-area">
+                    <!-- Tab Dashboard -->
+                    <div id="dashboard-tab" class="tab-content active">
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3>Progreso Diario</h3>
+                                <div class="daily-progress">
+                                    <div class="progress-item">
+                                        <span>Batallas ganadas</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                        <span class="progress-text">0/10</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span>Misiones completadas</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                        <span class="progress-text">0/3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Acciones Rápidas</h3>
+                                <div class="quick-actions">
+                                    <button class="action-btn" id="quick-battle">
+                                        <span class="action-icon">⚔️</span>
+                                        <span>Batalla Rápida</span>
+                                    </button>
+                                    <button class="action-btn" id="daily-reward">
+                                        <span class="action-icon">🎁</span>
+                                        <span>Recompensa Diaria</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Estadísticas</h3>
+                                <div class="stats-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-value" id="total-battles">0</span>
+                                        <span class="stat-label">Batallas</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value" id="total-gold">0</span>
+                                        <span class="stat-label">Oro Total</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value" id="play-time">0h</span>
+                                        <span class="stat-label">Tiempo Jugado</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Explorar -->
+                    <div id="explore-tab" class="tab-content">
+                        <div class="explore-container">
+                            <h2>Mapa del Mundo</h2>
+                            <div class="world-map">
+                                <div class="map-location available" data-location="bosque">
+                                    <div class="location-icon">🌲</div>
+                                    <div class="location-name">Bosque Susurrante</div>
+                                    <div class="location-level">Nivel 1-5</div>
+                                </div>
+                                <div class="map-location locked" data-location="cueva">
+                                    <div class="location-icon">🕳️</div>
+                                    <div class="location-name">Cuevas Oscuras</div>
+                                    <div class="location-level">Nivel 6-10</div>
+                                </div>
+                                <div class="map-location locked" data-location="montaña">
+                                    <div class="location-icon">⛰️</div>
+                                    <div class="location-name">Picos Helados</div>
+                                    <div class="location-level">Nivel 11-15</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Otros tabs serán agregados progresivamente -->
+                    <div id="inventory-tab" class="tab-content">
+                        <h2>Inventario</h2>
+                        <p>Próximamente...</p>
+                    </div>
+
+                    <div id="character-tab" class="tab-content">
+                        <h2>Personaje</h2>
+                        <p>Próximamente...</p>
+                    </div>
+
+                    <div id="quests-tab" class="tab-content">
+                        <h2>Misiones</h2>
+                        <p>Próximamente...</p>
+                    </div>
+
+                    <div id="achievements-tab" class="tab-content">
+                        <h2>Logros</h2>
+                        <p>Próximamente...</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Pantalla de Batalla -->
+        <div id="battle-screen" class="screen">
+            <div class="battle-container">
+                <div class="battle-header">
+                    <h2 id="battle-location">Combate</h2>
+                    <button id="flee-battle" class="flee-btn">Huir</button>
+                </div>
+                
+                <div class="battle-area">
+                    <div class="player-side">
+                        <div class="character-sprite" id="player-sprite">🧙‍♂️</div>
+                        <div class="character-info">
+                            <h3 id="battle-player-name">Aventurero</h3>
+                            <div class="battle-health-bar">
+                                <div class="bar-fill" id="battle-player-health"></div>
+                                <span class="bar-text" id="battle-player-health-text">100/100</span>
+                            </div>
+                            <div class="battle-mana-bar">
+                                <div class="bar-fill" id="battle-player-mana"></div>
+                                <span class="bar-text" id="battle-player-mana-text">50/50</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vs-indicator">VS</div>
+
+                    <div class="enemy-side">
+                        <div class="character-sprite" id="enemy-sprite">👹</div>
+                        <div class="character-info">
+                            <h3 id="enemy-name">Enemigo</h3>
+                            <div class="battle-health-bar">
+                                <div class="bar-fill" id="battle-enemy-health"></div>
+                                <span class="bar-text" id="battle-enemy-health-text">100/100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="battle-log" id="battle-log">
+                    <p>¡El combate ha comenzado!</p>
+                </div>
+
+                <div class="battle-actions">
+                    <button class="battle-action-btn" id="attack-btn">
+                        <span class="action-icon">⚔️</span>
+                        <span>Atacar</span>
+                    </button>
+                    <button class="battle-action-btn" id="defend-btn">
+                        <span class="action-icon">🛡️</span>
+                        <span>Defender</span>
+                    </button>
+                    <button class="battle-action-btn" id="magic-btn">
+                        <span class="action-icon">✨</span>
+                        <span>Magia</span>
+                    </button>
+                    <button class="battle-action-btn" id="item-btn">
+                        <span class="action-icon">🧪</span>
+                        <span>Objeto</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/game.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/battle.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
