@@ -9,8 +9,6 @@ services:
     ports:
       - "8080:80"
     restart: unless-stopped
-    networks:
-      - coolify
     environment:
       - NGINX_ENTRYPOINT_QUIET_LOGS=1
     healthcheck:
