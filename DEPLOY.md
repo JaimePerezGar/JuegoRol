@@ -76,8 +76,17 @@ Una vez descargado:
 
 El juego está listo para:
 - **Coolify**: Usa los archivos Docker incluidos
+  - Si el puerto 80 está ocupado, usa `docker-compose.coolify.yml`
+  - O cambia el puerto en `docker-compose.yml` (línea 10)
 - **Netlify**: Arrastra la carpeta al dashboard de Netlify
 - **Cualquier hosting estático**: Sube todos los archivos
+
+### Solución de problemas en Coolify
+
+Si aparece el error "port is already allocated":
+1. Usa el archivo `docker-compose.coolify.yml` en lugar del `docker-compose.yml`
+2. O edita el puerto en `docker-compose.yml` (cambiar `"80:80"` a `"8080:80"`)
+3. Coolify manejará automáticamente el proxy reverso
 
 ## 💾 Tamaño total
 

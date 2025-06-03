@@ -5,12 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: realm-quest-rpg
-    ports:
-      - "8080:80"
     restart: unless-stopped
-    networks:
-      - coolify
+    expose:
+      - "80"
     environment:
       - NGINX_ENTRYPOINT_QUIET_LOGS=1
     healthcheck:
@@ -19,11 +16,3 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    labels:
-      - "coolify.managed=true"
-      - "coolify.name=realm-quest"
-      - "coolify.type=application"
-
-networks:
-  coolify:
-    external: true
