@@ -23,7 +23,3 @@ services:
       - "coolify.managed=true"
       - "coolify.name=realm-quest"
       - "coolify.type=application"
-
-networks:
-  coolify:
-    external: true
